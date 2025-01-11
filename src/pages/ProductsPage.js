@@ -5,6 +5,7 @@ import Pagination from "../components/Pagination";
 import { FaSearch, FaList, FaPhoneAlt, FaWhatsapp } from "react-icons/fa";
 import './ProductPage.css';
 import items from "../data/items.json"; // Import static data
+import debounce from 'lodash.debounce';
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
@@ -14,6 +15,7 @@ const ProductsPage = () => {
   const [selectedPriceRange, setSelectedPriceRange] = useState("");
   const [selectedRating, setSelectedRating] = useState("");
   const [loading, setLoading] = useState(true);
+  const [filterLoading, setFilterLoading] = useState(false);
 
   // Pagination States
   const [currentPage, setCurrentPage] = useState(1);
@@ -37,6 +39,7 @@ const ProductsPage = () => {
 
   // Handle Filters and Search
   useEffect(() => {
+    setFilterLoading(true);
     let tempProducts = [...products];
 
     if (searchQuery) {
@@ -64,6 +67,7 @@ const ProductsPage = () => {
     }
 
     setFilteredProducts(tempProducts);
+    setFilterLoading(false);
   }, [searchQuery, selectedCategory, selectedPriceRange, selectedRating, products]);
 
   // Handle Pagination
@@ -74,8 +78,8 @@ const ProductsPage = () => {
   // Handle Page Change
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  // Handle Search
-  const handleSearchChange = (e) => setSearchQuery(e.target.value);
+  // Debounced Search Handler
+  const handleSearchChange = debounce((e) => setSearchQuery(e.target.value), 300);
 
   // Handle Category Change
   const handleCategoryChange = (value) => setSelectedCategory(value);
@@ -114,7 +118,6 @@ const ProductsPage = () => {
               type="text"
               className="custom-search-input"
               placeholder="Search for products..."
-              value={searchQuery}
               onChange={handleSearchChange}
             />
             <button className="custom-search-button">
@@ -183,6 +186,11 @@ const ProductsPage = () => {
         <div className="text-center">
           <Spinner animation="border" variant="primary" />
           <p>Loading items, please wait...</p>
+        </div>
+      ) : filterLoading ? (
+        <div className="text-center">
+          <Spinner animation="border" variant="primary" />
+          <p>Filtering items, please wait...</p>
         </div>
       ) : (
         <div>

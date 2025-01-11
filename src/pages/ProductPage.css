@@ -1,245 +1,265 @@
-/* Custom search bar styling */
+/* Base styles remain the same */
+
+/* Enhanced Product Card with Advanced Hover Effects */
+.product-card {
+  background: linear-gradient(145deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* Glowing border effect */
+.product-card::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  border-radius: 20px;
+  z-index: -1;
+  animation: glowingBorder 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+@keyframes glowingBorder {
+  0% { background-position: 0 0; }
+  50% { background-position: 400% 0; }
+  100% { background-position: 0 0; }
+}
+
+/* Shine effect */
+.product-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: 0.8s;
+}
+
+/* Multiple hover effects */
+.product-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(255, 255, 255, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.product-card:hover::before {
+  left: 100%;
+}
+
+.product-card:hover::after {
+  opacity: 1;
+  filter: blur(20px);
+}
+
+/* Card Image Hover Effects */
+.card-img-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.card-img {
+  height: 250px;
+  object-fit: contain;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: brightness(0.9);
+}
+
+.product-card:hover .card-img {
+  transform: scale(1.1) rotate(2deg);
+  filter: brightness(1.1);
+}
+
+/* Enhanced Card Body Hover Effects */
+.card-body {
+  padding: 20px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+  transform-origin: top;
+  transition: all 0.4s ease;
+}
+
+.product-card:hover .card-body {
+  background: linear-gradient(to top, 
+    rgba(0, 0, 0, 0.95),
+    rgba(0, 0, 0, 0.8)
+  );
+}
+
+/* Enhanced Button Hover Effects */
+.btn-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 15px;
+  opacity: 0.9;
+  transition: all 0.3s ease;
+}
+
+.buy-now-btn, .call-now-btn {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Button gradient backgrounds */
+.buy-now-btn {
+  background: linear-gradient(45deg, #63288a, #8a2893);
+}
+
+.call-now-btn {
+  background: linear-gradient(45deg, #247b15, #2a9119);
+}
+
+/* Button hover effects */
+.buy-now-btn::before, .call-now-btn::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transform: rotate(45deg);
+  transition: 0.5s;
+  opacity: 0;
+}
+
+.buy-now-btn:hover::before, .call-now-btn:hover::before {
+  opacity: 1;
+  transform: rotate(45deg) translate(50%, 50%);
+}
+
+.buy-now-btn:hover, .call-now-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  filter: brightness(1.1);
+}
+
+/* Enhanced Filter Hover Effects */
+.filter-select {
+  position: relative;
+  overflow: hidden;
+}
+
+.filter-select:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Search Bar Hover Effects */
 .custom-search-bar {
-    display: flex;
-    align-items: center;
-    background-color: #f8f9fa;
-    border-radius: 5px;
-    padding: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 100%; /* Ensure full width */
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  padding: 5px;
+  transition: box-shadow 0.3s ease;
+}
+
+.custom-search-bar:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .custom-search-input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    margin-right: 10px;
-    background-color: white; /* Set background to white */
-    color: black; /* Set text color to black for visibility */
+  border: none;
+  outline: none;
+  padding: 10px 15px;
+  border-radius: 25px;
+  width: 100%;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
 }
 
-/* Optional: Style for the input box on focus */
 .custom-search-input:focus {
-    outline: none; /* Remove default focus outline */
-    border-color: #4CAF50; /* Change border color on focus */
-    background-color: #f0f0f0; /* Light background on focus */
-    color: black; /* Keep text color black */
+  background-color: #f0f0f0;
 }
 
 .custom-search-button {
   background-color: #007bff;
   border: none;
-  padding: 10px 20px; /* Increased padding for better button appearance */
-  border-radius: 5px;
+  border-radius: 25px;
   color: white;
+  padding: 10px 15px;
+  margin-left: 5px;
   cursor: pointer;
-  font-size: 16px;
   transition: background-color 0.3s ease;
 }
 
 .custom-search-button:hover {
   background-color: #0056b3;
 }
-
-/* Style for the search box */
-.search-input {
-  background-color: white; /* Set a white background to make the text visible */
-  color: black; /* Ensure text color is black */
-  border: 1px solid #ccc; /* Add a light border around the input */
-  padding: 10px; /* Adjust padding for better spacing */
-  font-size: 14px; /* Adjust font size for better readability */
+/* Price and Rating Text Hover Effect */
+.card-text {
+  transition: all 0.3s ease;
 }
 
-/* Optional: Style for the input box on focus */
-.search-input:focus {
-  outline: none; /* Remove default focus outline */
-  border-color: #4CAF50; /* Change border color on focus */
-  background-color: #f0f0f0; /* Light background on focus */
-  color: black; /* Keep text color black */
+.product-card:hover .card-text {
+  transform: translateX(5px);
+  color: #fff;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
 
-/* Filter Dropdown */
-.filter-item {
-  display: flex;
-  flex-direction: column;
-  margin-top: 10px;
+/* Rating Stars Animation */
+.product-card:hover .rating {
+  animation: starTwinkle 1s infinite alternate;
 }
 
-.filter-label {
-  font-weight: bold;
-  margin-bottom: 5px;
+@keyframes starTwinkle {
+  0% { opacity: 0.7; }
+  100% { opacity: 1; }
 }
 
-.filter-dropdown {
-  position: relative;
+/* Add hover state for entire card group */
+.g-4 {
+  transition: all 0.3s ease;
 }
 
-.filter-select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  background-color: #fff;
-  cursor: pointer;
+.g-4:hover .product-card:not(:hover) {
+  filter: brightness(0.7);
+  transform: scale(0.98);
 }
 
-/* Product card styling */
-.product-card {
-    background-color: #000; /* Set card background to black */
-    color: #fff; /* Set text color to white */
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Initial shadow */
-    transition: all 0.3s ease-in-out; /* Smooth transition for all properties */
-}
-
-.product-card:hover {
-    transform: translateY(-5px); /* Lift the card slightly on hover */
-    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.5); /* Light white shadow on hover */
-}
-
-/* Adjust Card Image to make it smaller with padding between image and card border */
-.product-card .card-img {
-    width: 70%; /* Set width to 70% of the card */
-    height: auto; /* Maintain aspect ratio of the image */
-    object-fit: contain; /* Ensure the image fits without distortion */
-    border-radius: 20px; /* Rounded corners */
-    padding: 20px; /* Add padding between the image and card border */
-    display: block; /* Ensure the image is displayed as a block element */
-    margin: 0 auto; /* Center the image within the card */
-}
-
-.product-card .card-body {
-    padding: 15px;
-}
-
-.product-card .card-title, 
-.product-card .card-text {
-    color: #fff; /* Ensures all text is white */
-}
-
-.product-card .btn {
-    background-color: #0412b0;
-    color: white;
-    border-radius: 5px;
-    padding: 10px 15px; /* Ensure button has proper padding */
-}
-
-.product-card .btn:hover {
-    background-color: #0056b3;
-}
-/* For responsiveness */
-@media (max-width: 767px) {
-  .custom-search-bar {
-    flex-direction: column; /* Stacks the search bar elements */
-  }
-
-  .custom-search-input {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-
-  .custom-search-button {
-    width: 100%;
-    margin-top: 10px; /* Adds space above the button when stacked */
-  }
-
-  .filter-item {
-    margin-top: 20px;
-  }
-
-  .filter-select {
-    margin-bottom: 10px; /* Add space between filter dropdowns */
-  }
-}
-
-/* Remove underline from 'View Product' button */
-.product-card .btn {
-  text-decoration: none; /* Remove underline */
-}
-
-/* Align Buy Now and Call Now buttons in a single row and reduce button size */
-.card-body .btn-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .product-card:hover {
+    transform: translateY(-5px) scale(1.01);
   }
   
-  .buy-now-btn,
-  .call-now-btn {
-    padding: 8px 12px; /* Smaller padding */
-    font-size: 14px; /* Smaller text */
-    border-radius: 5px;
-    text-align: center;
-    width: 48%; /* Ensures both buttons are of the same size */
+  .product-card:hover .card-img {
+    transform: scale(1.05) rotate(1deg);
   }
   
-  /* Adjust Card Image */
-  .product-card .card-img {
-    width: 100%;
-    height: 180px; /* Smaller height */
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 10px; /* Padding between image and card content */
+  .g-4:hover .product-card:not(:hover) {
+    filter: brightness(0.85);
+    transform: scale(0.99);
   }
-  
-  /* Equalize card height and width */
-  .product-card {
-    width: 300px; /* Set a fixed width */
-    height: auto; /* Allow the height to adjust based on content */
-    margin: 10px; /* Add margin to give some space between cards */
-    padding: 10px; /* Reduce the padding inside the card */
-  }
-  
-  .card-body {
-    flex-grow: 1; /* Ensures the body fills the space */
-  }
-  
-  /* Responsive design for cards */
-  @media (max-width: 767px) {
-    .product-card {
-      height: 100%; /* Ensure equal height even on smaller screens */
-    }
-  
-    .card-img {
-      height: 150px; /* Adjust for small screen sizes */
-    }
-  }
-  
-  /* Buy Now Button Styling */
-  .buy-now-btn {
-    background-color: #63288a; /* Customize the color */
-    color: white; /* Text color */
-    border-radius: 5px;
-    padding: 10px 20px; /* Add padding */
-    width: 100%; /* Ensure button is full width */
-    margin-bottom: 10px; /* Add space between buttons */
-  }
-  
-  .buy-now-btn:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-  }
-  
-  /* Call Now Button Styling */
-  .call-now-btn {
-    background-color: #247b15; /* Customize the color */
-    color: white; /* Text color */
-    border-radius: 5px;
-    padding: 10px 20px; /* Add padding */
-    width: 100%; /* Ensure button is full width */
-  }
-  
-  .call-now-btn:hover {
-    background-color: #218838; /* Darker green on hover */
-  }
-  
-  .card {
-    margin-bottom: 30px; /* Adjust this value to add more space between cards */
-  }
-/* Zoom effect on hover */
-.product-card:hover .product-img {
-    transform: scale(1.1); /* Zoom in by 10% */
-  }  
+}

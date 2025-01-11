@@ -1,94 +1,196 @@
-/* Ensure body doesn't overflow */
+/* Reset and base styles */
 body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  background-color: black; /* Set background to black */
+  background-color: black;
 }
 
-/* General container styling to prevent overflow */
-.container-fluid,
-.row,
-.col {
-  margin: 0;
+.homepage-container {
+  max-width: 100%;
+  overflow-x: hidden;
   padding: 0;
-  max-width: 100%; /* Ensure no element exceeds the viewport */
+}
+
+/* Grid and spacing adjustments */
+.card-grid {
+  margin: 0 -8px;
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .card-grid {
+    margin: 0 4px;
+  }
+}
+
+/* Enhanced Card styling with new hover effects */
+.category-card,
+.product-card {
+  background-color: black !important;
+  color: white !important;
+  height: 100%;
+  margin: 0;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid transparent;
+  position: relative;
   overflow: hidden;
 }
 
-/* Section styling to remove potential overflow */
-section {
-  padding-left: 15px;
-  padding-right: 15px;
-  box-sizing: border-box;
-}
-
-/* Images in cards should not overflow */
-.category-card img,
-.product-card img {
+.card-image {
+  padding: 10px;
+  object-fit: cover;
+  height: 200px;
   width: 100%;
-  height: auto;
+  transition: transform 0.5s ease-in-out;
 }
 
-/* Card base styling */
-.category-card,
-.product-card {
-  background-color: black !important; /* Black background for the card */
-  color: white !important; /* White text for visibility */
-  padding: 20px;
-  border-radius: 15px; /* Soft rounded corners for a modern look */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Soft shadow for depth */
-  transition: all 0.3s ease; /* Smooth transition for all hover effects */
-  border: 2px solid transparent; /* Invisible border for smooth border changes */
-  position: relative; /* For positioning shadow or effects */
-}
-
-/* Hover effect for cards */
-.category-card:hover,
-.product-card:hover {
-  transform: scale(1.05); /* Slight zoom effect on hover */
-  box-shadow: 0 20px 40px rgba(255, 255, 255, 0.4); /* Stronger white shadow with blur */
-  border: 2px solid #fff; /* Highlight the border with white color */
-  z-index: 1; /* Bring the card to the front on hover */
-  opacity: 1; /* Ensure opacity remains at full value */
-}
-
-/* Additional hover glow effect */
-.category-card:hover::before,
-.product-card:hover::before {
-  content: ''; /* Empty content for pseudo-element */
+/* New hover effects for cards */
+.category-card::before,
+.product-card::before {
+  content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.2); /* Soft white glow */
-  border-radius: 15px; /* Match border radius */
-  transform: translate(-50%, -50%); /* Center the glow */
-  filter: blur(10px); /* Blur effect for soft glow */
-  z-index: -1; /* Send glow behind the card content */
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-/* Ensure no extra space on smaller screens */
+/* Shine effect on hover */
+.category-card::after,
+.product-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(45deg);
+  transition: 0.5s;
+  opacity: 0;
+}
+
+/* Enhanced hover states */
+.category-card:hover,
+.product-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 20px 30px rgba(0, 0, 0, 0.7),
+    0 0 20px rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.category-card:hover::before,
+.product-card:hover::before {
+  opacity: 1;
+}
+
+.category-card:hover::after,
+.product-card:hover::after {
+  opacity: 1;
+  transform: rotate(45deg) translate(50%, 50%);
+}
+
+/* Image zoom effect on hover */
+.category-card:hover .card-image,
+.product-card:hover .card-image {
+  transform: scale(1.1);
+}
+
+/* Card content hover effects */
+.category-card:hover .card-body,
+.product-card:hover .card-body {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.8),
+    rgba(0, 0, 0, 0.9)
+  );
+}
+
+/* Button hover animation */
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  margin-top: auto;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+/* Existing mobile responsiveness */
 @media (max-width: 767px) {
   .category-card,
   .product-card {
     margin: 0 auto;
-    max-width: 100%; /* Prevent horizontal overflow */
+    height: auto;
   }
 
-  /* Remove any unwanted margins */
-  .row {
-    margin: 0 !important;
+  .card-image {
+    height: 180px;
   }
 
-  /* Responsive font adjustments */
-  h1, h2 {
-    font-size: 1.5rem;
+  .card-body {
+    padding: 1rem !important;
   }
 
-  .btn {
-    font-size: 0.8rem;
-    padding: 8px 12px;
+  .text-4xl {
+    font-size: 2rem !important;
+  }
+
+  .text-3xl {
+    font-size: 1.75rem !important;
+  }
+
+  .text-lg {
+    font-size: 1rem !important;
+  }
+
+  section {
+    padding: 2rem 0.5rem !important;
   }
 }

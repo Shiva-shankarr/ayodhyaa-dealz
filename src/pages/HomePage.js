@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Card, Row, Col } from "react-bootstrap";
-import "./HomePage.css"; // Import your custom CSS file
+import "./HomePage.css";
 
 const HomePage = () => {
   // Featured categories JSON data
@@ -89,11 +89,9 @@ const HomePage = () => {
   ];
 
   return (
-    <div className="bg-black min-h-screen pt-20 m-5">
+    <div className="homepage-container">
       {/* Hero Section */}
-      <section className="text-white py-10 text-center m-">
-
-        
+      <section className="text-white py-8 text-center">
         <h1 className="text-4xl font-bold mt-4">Welcome to ShopWay</h1>
         <p className="text-lg mb-6">Explore the best products at unbeatable prices. Shop Now!</p>
         <Link
@@ -105,26 +103,26 @@ const HomePage = () => {
       </section>
 
       {/* Featured Categories */}
-      <section className="py-16 text-center">
-        <h2 className="text-3xl font-bold mb-6 text-white">Featured Categories</h2>
-        <p className="text-lg mb-6 text-white">
-          Discover a wide variety of categories, each offering unique and quality products tailored to your needs. From electronics to fashion, we have something for everyone.
+      <section className="py-8">
+        <h2 className="text-3xl font-bold mb-4 text-white text-center">Featured Categories</h2>
+        <p className="text-lg mb-4 text-white text-center px-4">
+          Discover a wide variety of categories, each offering unique and quality products tailored to your needs.
         </p>
-        <Row xs={1} sm={2} md={4} className="g-4">
+        <Row className="card-grid mx-0">
           {categories.map((category, index) => (
-            <Col key={index}>
-              <Card className="category-card">
-                <Card.Img variant="top" src={category.image} style={{ padding: '10px', objectFit: 'cover', height: '200px' }} />
-                <Card.Body>
+            <Col key={index} xs={12} sm={6} md={3} className="mb-4 px-2">
+              <Card className="category-card h-100">
+                <Card.Img variant="top" src={category.image} className="card-image" />
+                <Card.Body className="d-flex flex-column">
                   <Card.Title>{category.name}</Card.Title>
                   <Card.Text>{category.description}</Card.Text>
                   <Link
-  to="/products"
-  state={{ category }}
-  className="btn btn-primary"
->
-  View All
-</Link>
+                    to="/products"
+                    state={{ category }}
+                    className="btn btn-primary mt-auto"
+                  >
+                    View All
+                  </Link>
                 </Card.Body>
               </Card>
             </Col>
@@ -133,42 +131,42 @@ const HomePage = () => {
       </section>
 
       {/* Featured Products */}
-<section className="shiva py-16 text-center">
-  <h1 className="text-3xl font-bold mb-6">Featured Products</h1>
-  <p className="text-lg mb-6">
-    Explore our selection of top-rated products, carefully curated to offer you the best quality and value. From cameras to smartphones, find the perfect product for your needs.
-  </p>
-  <Row xs={1} sm={2} md={4} className="g-4">
-    {products.map((product, index) => (
-      <Col key={index}>
-        <Card className="product-card">
-          <Card.Img
-            variant="top"
-            src={product.image}
-            style={{ padding: "10px", objectFit: "cover", height: "200px" }}
-          />
-          <Card.Body>
-            <Card.Title>{product.name}</Card.Title>
-            <Card.Text>{product.price}</Card.Text>
-            <Card.Text>{product.rating}</Card.Text>
-            <Link
-              to={`/product/${index + 1}`}
-              state={{ product }}
-              className="btn btn-primary"
-            >
-              View Product
-            </Link>
-          </Card.Body>
-        </Card>
-      </Col>
-    ))}
-  </Row>
-</section>
+      <section className="py-8">
+        <h1 className="text-3xl font-bold mb-4 text-center">Featured Products</h1>
+        <p className="text-lg mb-4 text-center px-4">
+          Explore our selection of top-rated products, carefully curated to offer you the best quality and value.
+        </p>
+        <Row className="card-grid mx-0">
+          {products.map((product, index) => (
+            <Col key={index} xs={12} sm={6} md={3} className="mb-4 px-2">
+              <Card className="product-card h-100">
+                <Card.Img
+                  variant="top"
+                  src={product.image}
+                  className="card-image"
+                />
+                <Card.Body className="d-flex flex-column">
+                  <Card.Title>{product.name}</Card.Title>
+                  <Card.Text>{product.price}</Card.Text>
+                  <Card.Text>{product.rating}</Card.Text>
+                  <Link
+                    to={`/product/${index + 1}`}
+                    state={{ product }}
+                    className="btn btn-primary mt-auto"
+                  >
+                    View Product
+                  </Link>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+      </section>
 
       {/* Call to Action */}
-      <section className="bg-black text-white py-12 text-center">
+      <section className="bg-black text-white py-8 text-center">
         <h2 className="text-3xl font-bold mb-4">Limited Time Offer!</h2>
-        <p className="text-lg mb-6">
+        <p className="text-lg mb-4">
           Get 20% off on your first order. Don't miss out, shop now!
         </p>
         <Link
