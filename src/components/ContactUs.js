@@ -1,68 +1,85 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import { FaMapMarkerAlt, FaPhoneAlt, FaRegClock } from 'react-icons/fa';
 
 const ContactUs = () => {
   return (
-    <Container className="my-5">
-      <Row>
+    <div className="container mx-auto px-4 py-8 md:py-16 max-w-7xl" style={{ backgroundColor: 'black' }}>
+      <div className="flex flex-col items-center">
         {/* Heading Section */}
-        <Col xs={12} className="text-center mb-4"><br></br><br></br><br></br><br></br><br></br><br></br>
-          <h2>Contact Us</h2>
-          <p>We would love to hear from you! Feel free to reach out to us using the following information.</p>
-        </Col>
+        <br></br> <br></br> <br></br> <br></br>
+        <div className="text-center mb-8 w-full">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Contact Us</h2>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            We would love to hear from you! Feel free to reach out to us using the following information.
+          </p>
+        </div>
         
-       {/* Contact Information Section */}
-<Col xs={12} md={4} className="text-center text-md-left mb-4 mb-md-0">
-  <h5>Contact Information</h5>
-  <p>
-    <FaMapMarkerAlt style={{ marginRight: '5px' }} /> Address: Hyderabad, Telangana, India
-  </p>
-  <p>
-    <FaPhoneAlt style={{ marginRight: '5px' }} /> Phone: +91 9876543210
-  </p>
-  <p>
-    <FaRegClock style={{ marginRight: '5px' }} /> Timing: Mon - Fri, 9:00 AM - 6:00 PM
-  </p>
-</Col>
+        <div className="w-full flex flex-col lg:flex-row gap-8">
+          {/* Contact Information Section */}
+          <div className="w-full lg:w-1/3">
+            <div className="bg-gray-800 p-6 rounded-lg h-full">
+              <h5 className="text-xl font-semibold mb-6 text-white">Contact Information</h5>
+              <div className="space-y-4">
+                <div className="flex items-start">
+                  <span className="mr-3 text-primary">📍</span>
+                  <p className="text-gray-400">Hyderabad, Telangana, India</p>
+                </div>
+                <div className="flex items-start">
+                  <span className="mr-3 text-primary">📞</span>
+                  <p className="text-gray-400">+91 9876543210</p>
+                </div>
+                <div className="flex items-start">
+                  <span className="mr-3 text-primary">⏰</span>
+                  <p className="text-gray-400">Mon - Fri, 9:00 AM - 6:00 PM</p>
+                </div>
+              </div>
+            </div>
+          </div>
 
-        {/* Contact Form Section */}
-        <Col xs={12} md={8}>
-          <h5>Get In Touch</h5>
-          <form>
-            <Row>
-              <Col xs={12} md={6} className="mb-3">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Your Name"
-                  required
-                />
-              </Col>
-              <Col xs={12} md={6} className="mb-3">
-                <input
-                  type="email"
-                  className="form-control"
-                  placeholder="Your Email"
-                  required
-                />
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={12} className="mb-3">
-                <textarea
-                  className="form-control"
-                  rows="4"
-                  placeholder="Your Message"
-                  required
-                />
-              </Col>
-            </Row>
-            <button type="submit" className="btn btn-primary">Send Message</button>
-          </form>
-        </Col>
-      </Row>
-    </Container>
+          {/* Contact Form Section */}
+          <div className="w-full lg:w-2/3">
+            <div className="bg-gray-800 p-6 rounded-lg shadow-sm">
+              <h5 className="text-xl font-semibold mb-6 text-white">Get In Touch</h5>
+              <form className="space-y-4">
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <input
+                      type="text"
+                      className="w-full p-3 border rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                      placeholder="Your Name"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="email"
+                      className="w-full p-3 border rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                      placeholder="Your Email"
+                      required
+                    />
+                  </div>
+                </div>
+                <div>
+                  <textarea
+                    className="w-full p-3 border rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    rows={4}
+                    placeholder="Your Message"
+                    required
+                  />
+                </div>
+                <div className="text-right">
+                  <button 
+                    type="submit" 
+                    className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors"
+                  >
+                    Send Message
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

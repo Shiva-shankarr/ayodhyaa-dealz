@@ -107,7 +107,7 @@ const ProductsPage = () => {
 
   return (
     <div className="container">
-      <br /><br /><br /><br /><br /><br />
+      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
       <h2 className="text-center mb-4">Products</h2>
 
       {/* Search and Filter */}

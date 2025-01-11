@@ -90,7 +90,7 @@ const HomePage = () => {
 
   return (
     <div className="homepage-container">
-      {/* Hero Section */}
+      {/* Hero Section */}<br></br><br></br><br></br><br></br><br></br>
       <section className="text-white py-8 text-center">
         <h1 className="text-4xl font-bold mt-4">Welcome to ShopWay</h1>
         <p className="text-lg mb-6">Explore the best products at unbeatable prices. Shop Now!</p>
